@@ -44,6 +44,24 @@ def rev_ladder(n):
         print("*"*i)
 
 
+def get_multipliers(a):
+    count = 0
+    for i in range(1, a + 1):
+        if not a % i:
+            count += 1
+    return count
+
+
+def check_palindrome(str_):
+    str_ = str_.lower()
+    str_ = str_.replace(" ", "")
+
+    if str_ == str_[::-1]:
+        return True
+    else:
+        return False
+
+
 temp_text = """
    У лукоморья дуб зелёный;
    Златая цепь на дубе том:
@@ -89,3 +107,6 @@ rev_ladder(10)
 print(pow_func(3))
 outside_result = pow_func(3)
 print(outside_result)
+print(get_multipliers(4))
+print(check_palindrome("test"))
+print(check_palindrome("Кит на море не романтик"))
