@@ -28,13 +28,16 @@ def hello_world():
 # вызвали функцию в любом месте программы
 
 def pow_func(base, n=2):
-    print(base ** n)
+    inside_result = base ** n
+    return inside_result
 
-def is_devisor(a, n):
+
+def is_divisor(a, n):
     if a % n:
         print(f'число {n} не является делитедем числа {a}')
     else:
         print(f'число {n} является делителем числа {a}')
+
 
 def rev_ladder(n):
     for i in range(n, 0, -1):
@@ -81,5 +84,8 @@ print_2_add_2()
 hello_world()
 pow_func(3)
 pow_func(4, 2)
-is_devisor(5, 2)
+is_divisor(5, 2)
 rev_ladder(10)
+print(pow_func(3))
+outside_result = pow_func(3)
+print(outside_result)
