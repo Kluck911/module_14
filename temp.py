@@ -1,29 +1,32 @@
-def my_decorator(a_function_to_decorate):
-    # Здесь мы определяем новую функцию - «обертку». Она нам нужна, чтобы выполнять
-    # каждый раз при вызове оригинальной функции, а не только один раз
-    def wrapper():
-        # здесь поместим код, который будет выполняться до вызова, потом вызов
-        # оригинальной функции, потом код после вызова
-        print("Я буду выполнен до основного вызова!")
+def my_decorator(fn):
+    print("Этот код будет выведен один раз в момент декорирования функции")
 
-        result = a_function_to_decorate()  # не забываем вернуть значение исходной функции
-
-        print("Я буду выполнен после основного вызова!")
+    def wrapper(*args, **kwargs):
+        print('Этот код будет выполняться перед каждым вызовом функции')
+        result = fn(*args, **kwargs)
+        print('Этот код будет выполняться после каждого вызова функции')
         return result
 
     return wrapper
 
-def my_function():
-   print("Я - оборачиваемая функция!")
-   return 0
 
-print(my_function())
-# Я - оборачиваемая функция!
-# 0
+def do_it_twice(func):
+    count = 0
 
-decorated_function = my_decorator(my_function)  # декорирование функции
-print(decorated_function())
-# Я буду выполнен до основного вызова!
-# Я - оборачиваемая функция!
-# Я буду выполнен после основного вызова!
-# 0
+    def wrapper(*args, **kwargs):
+        nonlocal count
+        func(*args, **kwargs)
+        count += 1
+        print(f"Функция {func} была вызвана {count} раз")
+
+    return wrapper
+
+
+@do_it_twice
+def say_word(word):
+    print(word)
+
+
+say_word("Oo!!!")
+say_word("Oo!!!")
+say_word("Oo!!!")
