@@ -1,32 +1,37 @@
-def my_decorator(fn):
-    print("Этот код будет выведен один раз в момент декорирования функции")
+USERS = ['admin', 'guest', 'director', 'root', 'superstar']
 
-    def wrapper(*args, **kwargs):
-        print('Этот код будет выполняться перед каждым вызовом функции')
-        result = fn(*args, **kwargs)
-        print('Этот код будет выполняться после каждого вызова функции')
-        return result
+yesno = input("""Введите Y, если хотите авторизоваться или N, 
+             если хотите продолжить работу как анонимный пользователь: """)
 
+auth = yesno == "Y"
+
+if auth:
+    username = input("Введите ваш username:")
+
+
+def is_auth(func):
+    def wrapper():
+        if auth:
+            print("Пользователь авторизован")
+            func()
+        else:
+            print("Пользователь неавторизован. Функция выполнена не будет")
     return wrapper
 
 
-def do_it_twice(func):
-    count = 0
-
-    def wrapper(*args, **kwargs):
-        nonlocal count
-        func(*args, **kwargs)
-        count += 1
-        print(f"Функция {func} была вызвана {count} раз")
-
+def has_access(func):
+    def wrapper():
+        if username in USERS:
+            print("Авторизован как", username)
+            func()
+        else:
+            print("Доступ пользователю", username, "запрещен")
     return wrapper
 
 
-@do_it_twice
-def say_word(word):
-    print(word)
+@is_auth
+@has_access
+def from_db():
+    print("some data from database")
 
-
-say_word("Oo!!!")
-say_word("Oo!!!")
-say_word("Oo!!!")
+from_db()

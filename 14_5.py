@@ -48,7 +48,36 @@ def equal(N, S):
 
 
 
+
+
+
+
 """
+--------------------------------------------
+iter_obj = iter("Hello!")
+print(next(iter_obj))
+print(next(iter_obj))
+print(next(iter_obj))
+print(next(iter_obj))
+print(next(iter_obj))
+print(next(iter_obj))
+print(next(iter_obj))
+-------------------------------------------
+def e():
+    n = 1
+    while True:
+        yield (1 + 1 / n) ** n
+        n += 1
+
+
+last = 0
+for a in e():
+    if (a - last) < 0.00000001:
+        print(a)
+        break
+    else:
+        last = a
+----------------------------------------------
 print(equal(41, 5))
 
 print(mirror(234))
