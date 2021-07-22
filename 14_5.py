@@ -25,8 +25,12 @@ def quadratic_solve(a, b, c):
                (-b + D ** 0.5) / (2 * a)
 
 
-print(quadratic_solve(4, 4, 1))
+print(quadratic_solve(**{'a': 1,
+                         'b': 0,
+                         'c': -1}))
 
 """
+print(quadratic_solve(*list(map(float, input(f'Введите 3 аргумента функции через пробел: ').split()))))
+
 print(linear_solve(0, 0))
 """
