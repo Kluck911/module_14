@@ -33,4 +33,5 @@ def has_access(func):
 def from_db():
     print(f'\n Статус {username}: \n   - черт')
 
+
 from_db()
