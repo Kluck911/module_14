@@ -25,11 +25,40 @@ def quadratic_solve(a, b, c):
                (-b + D ** 0.5) / (2 * a)
 
 
+'''что то пошло не так'''
+
+
+def min_list(L):
+    if len(L) == 1:
+        return L[0]
+    return L[0] if L[0] < min_list(L[1:]) else min_list(L[1:])
+
+
+def mirror(a, res = 0):
+    return mirror(a // 10, res * 10 + a % 10) if a else res
+
+
+def equal(N, S):
+    if S < 0:
+        return False
+    if N < 10:
+        return N == S
+    else:
+        return equal(N // 10, S - N % 10)
+
+
+
+"""
+print(equal(41, 5))
+
+print(mirror(234))
+
+print(min_list('61562166565'))
+
 print(quadratic_solve(**{'a': 1,
                          'b': 0,
                          'c': -1}))
 
-"""
 print(quadratic_solve(*list(map(float, input(f'Введите 3 аргумента функции через пробел: ').split()))))
 
 print(linear_solve(0, 0))
