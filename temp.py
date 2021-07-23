@@ -13,3 +13,4 @@ print('-----------------------')
 print(dict(sorted(d.items())))
 print('-----------------------')
 print(dict(sorted(d.items(), key=lambda x: x[1])))
+
